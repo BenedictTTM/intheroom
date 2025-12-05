@@ -2,17 +2,26 @@
 
 :root {
   /* Palette (dark sacred mode) */
-  --background: #0B0C0F;
-  --surface: #111216;
-  --border: #1D1F27;
-  --primary: #E8E9EB; /* PP Mori Extralight / Regular equivalent */
-  --secondary: #6C717A;
-  --accent: #F5E6D3; /* Warm white-gold */
-  --accent-hover: rgba(212, 165, 116, 0.08); /* Soft amber */
-  
+  --background: #41423A;
+  /* Deep Olive Grey */
+  --surface: #141414;
+  /* Rich Black */
+  --border: #141414;
+  /* Rich Black */
+  --primary: #F7F7F7;
+  /* Crisp White */
+  --secondary: #ECE2D2;
+  /* Soft Beige */
+  --accent: #E07D27;
+  /* Vibrant Orange */
+  --accent-hover: rgba(224, 125, 39, 0.8);
+  /* Dimmed Orange */
+
   /* Fonts */
-  --font-sans: 'Manrope', sans-serif; /* Mori alternative */
-  --font-serif: 'Cormorant Garamond', serif; /* Sectra alternative */
+  --font-sans: 'Manrope', sans-serif;
+  /* Mori alternative */
+  --font-serif: 'Cormorant Garamond', serif;
+  /* Sectra alternative */
 }
 
 @theme inline {
@@ -23,7 +32,7 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
-  
+
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
@@ -15,8 +16,15 @@ export default function Navigation() {
 
     return (
         <nav className="fixed top-0 left-0 z-50 flex w-full justify-between px-8 py-6 mix-blend-difference">
-            <Link href="/" className="text-sm font-medium uppercase tracking-widest text-primary hover:text-accent">
-                Emmanuel
+            <Link href="/" className="block hover:opacity-80 transition-opacity">
+                <Image
+                    src="/images/logo.png"
+                    alt="Emmanuel Logo"
+                    width={120}
+                    height={32}
+                    className="h-8 w-auto object-contain"
+                    priority
+                />
             </Link>
             <div className="flex gap-8">
                 {links.map((link) => (
