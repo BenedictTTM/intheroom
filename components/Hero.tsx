@@ -29,7 +29,7 @@ export default function Hero() {
                 {/* Mobile Image */}
                 <div className="absolute inset-0">
                     <Image
-                        src="/images/faithmonti/A04A0012.jpg"
+                        src="/images/templechrist/home.jpg"
                         alt="Hero Background"
                         fill
                         className="object-cover"
@@ -66,7 +66,7 @@ export default function Hero() {
                 <h1 className="font-sans text-[15vw] font-bold leading-none tracking-tighter text-white sm:text-[200px] lg:text-[280px] drop-shadow-lg">
                     Emmanuel
                 </h1>
-                <p className="mt-8 font-sans text-xl font-medium tracking-tight text-white/90 sm:text-3xl drop-shadow-md">
+                <p className="mt-8 font-sans text-xl text-amber-500 font-medium tracking-tight text-white/90 sm:text-3xl drop-shadow-md">
                     A church for the seeking and the found.
                 </p>
             </motion.div>

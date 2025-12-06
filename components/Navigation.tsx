@@ -12,6 +12,7 @@ const links = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/events", label: "Events" },
+    { href: "/gallery", label: "Gallery" },
 ];
 
 export default function Navigation() {
