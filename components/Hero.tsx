@@ -12,7 +12,7 @@ const LETTER_ANIMATION = {
         transition: {
             delay: i * 0.05,
             duration: 1,
-            ease: [0.2, 0.65, 0.3, 0.9],
+            ease: [0.2, 0.65, 0.3, 0.9] as const,
         },
     }),
 };
@@ -22,7 +22,7 @@ export default function Hero() {
     const { scrollY } = useScroll();
 
     // Parallax effects
-    const y = useTransform(scrollY, [0, 1000], [0, 400]);
+    const yParallax = useTransform(scrollY, [0, 1000], [0, 400]);
     const opacity = useTransform(scrollY, [0, 500], [1, 0]);
     const scale = useTransform(scrollY, [0, 1000], [1, 1.1]);
 
@@ -32,6 +32,9 @@ export default function Hero() {
     const springConfig = { damping: 50, stiffness: 400 };
     const springX = useSpring(mouseX, springConfig);
     const springY = useSpring(mouseY, springConfig);
+
+    // Combine scroll and mouse parallax for Y axis
+    const combinedY = useTransform([yParallax, springY], ([latestY, latestSpringY]: any[]) => latestY + latestSpringY);
 
     const handleMouseMove = (e: React.MouseEvent) => {
         const { clientX, clientY } = e;
@@ -61,8 +64,8 @@ export default function Hero() {
                 style={{ scale }}
                 className="absolute inset-0 z-0"
             >
-                {/* Mobile Image */}
-                <div className="absolute inset-0 md:hidden">
+                {/* Image Background (Visible on all screens, covered by video on desktop if loaded) */}
+                <div className="absolute inset-0">
                     <Image
                         src="/images/faithmonti/A04A0012.jpg"
                         alt="Hero Background"
@@ -95,7 +98,7 @@ export default function Hero() {
 
             {/* Content Layer */}
             <motion.div
-                style={{ y, opacity, x: springX, y: springY }}
+                style={{ y: combinedY, opacity, x: springX }}
                 className="relative z-10 flex h-screen flex-col items-center justify-center px-4 text-center"
             >
                 <div className="overflow-hidden">
