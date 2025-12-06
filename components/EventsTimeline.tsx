@@ -35,15 +35,6 @@ const events = [
         ],
     },
     {
-        id: 3,
-        date: "05",
-        month: "January",
-        title: "Epiphany Service",
-        description: "Celebrating the revelation.",
-        time: "10:00",
-        images: [],
-    },
-    {
         id: 4,
         date: "12",
         month: "January",
