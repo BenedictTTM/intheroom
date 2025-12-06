@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import Image from "next/image";
 
 export default function Hero() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -15,19 +16,33 @@ export default function Hero() {
         window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
     };
 
+
+
     return (
         <section
             ref={containerRef}
             className="relative h-[120vh] w-full overflow-hidden bg-background"
         >
-            {/* Video Background */}
+            {/* Video/Image Background */}
             <div className="absolute inset-0 z-0">
+                {/* Mobile Image */}
+                <div className="absolute inset-0 md:hidden">
+                    <Image
+                        src="/images/faithmonti/A04A0012.jpg"
+                        alt="Hero Background"
+                        fill
+                        className="object-cover opacity-60 grayscale"
+                        priority
+                    />
+                </div>
+
+                {/* Desktop Video */}
                 <video
                     autoPlay
                     muted
                     loop
                     playsInline
-                    className="h-full w-full object-cover opacity-60 grayscale"
+                    className="hidden h-full w-full object-cover opacity-60 grayscale md:block"
                 >
                     {/* Placeholder video - replace with actual asset */}
                     <source

@@ -45,10 +45,10 @@ export default function AboutChapters() {
     return (
         <div ref={containerRef} className="bg-background">
             {/* Chapter 01: We Believe */}
-            <section className="flex min-h-screen flex-col justify-center px-8 py-24 md:px-24">
+            <section className="flex min-h-screen flex-col justify-center px-4 py-16 md:px-24 md:py-24">
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
                     <div className="flex flex-col justify-center">
-                        <h2 className="font-serif text-5xl font-light leading-tight text-primary md:text-7xl lg:text-8xl">
+                        <h2 className="font-serif text-3xl font-light leading-tight text-primary md:text-5xl lg:text-8xl">
                             "Reconciling hearts back to God."
                         </h2>
                         <div className="mt-8 border-l border-accent/30 pl-6">
@@ -64,10 +64,10 @@ export default function AboutChapters() {
                         <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
                             Chapter 01 — What We Do
                         </span>
-                        <p className="font-sans text-xl font-light leading-relaxed text-primary/80 md:text-2xl">
+                        <p className="font-sans text-lg font-light leading-relaxed text-primary/80 md:text-2xl">
                             The scriptures tell us that the day of our Lord Jesus is returning near. So what do we do?
                         </p>
-                        <p className="font-sans text-xl font-light leading-relaxed text-primary/80 md:text-2xl">
+                        <p className="font-sans text-lg font-light leading-relaxed text-primary/80 md:text-2xl">
                             We disciple teenagers. We go around preaching the gospel to schools and universities. Through our programs, outreaches, events, and discipleship meetings, we seek one thing: for the hearts of teenagers to be reconciled back to God.
                         </p>
                     </div>
@@ -102,13 +102,13 @@ export default function AboutChapters() {
             </section>
 
             {/* Chapter 03: Our People */}
-            <section className="min-h-screen px-8 py-24 md:px-24">
+            <section className="min-h-screen px-4 py-16 md:px-24 md:py-24">
                 <div className="mb-24">
                     <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
                         Chapter 03 — Our People
                     </span>
                 </div>
-                <div className="grid grid-cols-1 gap-24 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-12 md:gap-24 md:grid-cols-2 lg:grid-cols-3">
                     {[
                         { src: "/images/people-1.jpg", quote: "I came broken. I stay because here, silence is allowed." },
                         { src: "/images/people-2.jpg", quote: "No performance. Just presence. This is where I breathe." },
