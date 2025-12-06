@@ -1,87 +1,158 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
 import Image from "next/image";
+
+const LETTER_ANIMATION = {
+    hidden: { y: 100, opacity: 0 },
+    visible: (i: number) => ({
+        y: 0,
+        opacity: 1,
+        transition: {
+            delay: i * 0.05,
+            duration: 1,
+            ease: [0.2, 0.65, 0.3, 0.9],
+        },
+    }),
+};
 
 export default function Hero() {
     const containerRef = useRef<HTMLDivElement>(null);
-
     const { scrollY } = useScroll();
-    const y = useTransform(scrollY, [0, 1000], [0, 400]); // Parallax for text
-    const opacity = useTransform(scrollY, [0, 500], [1, 0]); // Fade out text
 
-    const scrollToContent = () => {
-        window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+    // Parallax effects
+    const y = useTransform(scrollY, [0, 1000], [0, 400]);
+    const opacity = useTransform(scrollY, [0, 500], [1, 0]);
+    const scale = useTransform(scrollY, [0, 1000], [1, 1.1]);
+
+    // Mouse parallax
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+    const springConfig = { damping: 50, stiffness: 400 };
+    const springX = useSpring(mouseX, springConfig);
+    const springY = useSpring(mouseY, springConfig);
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+        const x = clientX / innerWidth - 0.5;
+        const y = clientY / innerHeight - 0.5;
+        mouseX.set(x * 20); // Move 20px
+        mouseY.set(y * 20);
     };
 
+    const scrollToContent = () => {
+        const vh = window.innerHeight;
+        window.scrollTo({ top: vh, behavior: "smooth" });
+    };
 
+    const title = "Emmanuel";
+    const letters = title.split("");
 
     return (
         <section
             ref={containerRef}
-            className="relative h-[120vh] w-full overflow-hidden bg-background"
+            onMouseMove={handleMouseMove}
+            className="relative h-[110vh] w-full overflow-hidden bg-primary"
         >
-            {/* Video/Image Background */}
-            {/* Video/Image Background */}
-            <div className="absolute inset-0 z-0">
+            {/* Background Layer */}
+            <motion.div
+                style={{ scale }}
+                className="absolute inset-0 z-0"
+            >
                 {/* Mobile Image */}
-                <div className="absolute inset-0">
+                <div className="absolute inset-0 md:hidden">
                     <Image
-                        src="/images/templechrist/home.jpg"
+                        src="/images/faithmonti/A04A0012.jpg"
                         alt="Hero Background"
                         fill
-                        className="object-cover"
+                        className="object-cover opacity-80"
                         priority
                     />
-                    {/* Dark Overlay for Mobile */}
-                    <div className="absolute inset-0 bg-black/40" />
                 </div>
 
                 {/* Desktop Video */}
-                <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="absolute inset-0 hidden h-full w-full object-cover md:block"
-                >
-                    {/* Placeholder video - replace with actual asset */}
-                    <source
-                        src="https://cdn.coverr.co/videos/coverr-sun-shining-through-church-windows-5626/1080p.mp4"
-                        type="video/mp4"
-                    />
-                </video>
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-black/30" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-background" />
-            </div>
+                <div className="hidden md:block absolute inset-0">
+                    <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="h-full w-full object-cover opacity-90"
+                    >
+                        <source
+                            src="https://cdn.coverr.co/videos/coverr-sun-shining-through-church-windows-5626/1080p.mp4"
+                            type="video/mp4"
+                        />
+                    </video>
+                </div>
 
-            {/* Content */}
-            <motion.div
-                style={{ y, opacity }}
-                className="relative z-10 flex h-screen flex-col items-center justify-center text-center px-4"
-            >
-                <h1 className="font-sans text-[15vw] font-bold leading-none tracking-tighter text-white sm:text-[200px] lg:text-[280px] drop-shadow-lg">
-                    Emmanuel
-                </h1>
-                <p className="mt-8 font-sans text-xl text-amber-500 font-medium tracking-tight text-white/90 sm:text-3xl drop-shadow-md">
-                    A church for the seeking and the found.
-                </p>
+                {/* Cinematic Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background/90" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
             </motion.div>
 
-            {/* Enter CTA */}
-            <motion.button
-                onClick={scrollToContent}
+            {/* Content Layer */}
+            <motion.div
+                style={{ y, opacity, x: springX, y: springY }}
+                className="relative z-10 flex h-screen flex-col items-center justify-center px-4 text-center"
+            >
+                <div className="overflow-hidden">
+                    <motion.h1
+                        className="font-sans text-[18vw] font-bold leading-[0.85] tracking-tighter text-surface mix-blend-overlay sm:text-[200px] lg:text-[280px]"
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        {letters.map((char, i) => (
+                            <motion.span
+                                key={i}
+                                custom={i}
+                                variants={LETTER_ANIMATION}
+                                className="inline-block"
+                            >
+                                {char}
+                            </motion.span>
+                        ))}
+                    </motion.h1>
+                </div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.2, duration: 1 }}
+                    className="mt-12 overflow-hidden"
+                >
+                    <p className="font-serif text-xl italic text-surface/90 sm:text-3xl md:text-4xl font-light tracking-wide">
+                        A church for the seeking and the found.
+                    </p>
+                </motion.div>
+            </motion.div>
+
+            {/* Floating CTA */}
+            <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-12 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-2 text-sm font-light uppercase tracking-[0.2em] text-primary/60 transition-colors hover:text-accent"
+                transition={{ delay: 2, duration: 1 }}
+                className="absolute bottom-12 left-1/2 z-20 -translate-x-1/2"
             >
-                <span>Enter</span>
-                <ArrowDown className="h-4 w-4 animate-bounce" />
-            </motion.button>
+                <button
+                    onClick={scrollToContent}
+                    className="group flex flex-col items-center gap-3 text-xs font-medium uppercase tracking-[0.3em] text-surface/70 transition-colors hover:text-accent"
+                >
+                    <span className="relative">
+                        Enter
+                        <span className="absolute -bottom-1 left-0 h-[1px] w-0 bg-accent transition-all duration-300 group-hover:w-full" />
+                    </span>
+                    <div className="flex h-12 w-6 items-start justify-center rounded-full border border-surface/20 p-1">
+                        <motion.div
+                            animate={{ y: [0, 24, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                            className="h-1.5 w-1.5 rounded-full bg-accent"
+                        />
+                    </div>
+                </button>
+            </motion.div>
         </section>
     );
 }
