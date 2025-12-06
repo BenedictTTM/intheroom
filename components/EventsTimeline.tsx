@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { CalendarPlus } from "lucide-react";
 
@@ -8,17 +9,30 @@ const events = [
         id: 1,
         date: "24",
         month: "December",
-        title: "Midnight Mass",
+        title: "Morning Star",
         description: "A service of light and silence.",
         time: "23:00",
+        images: [
+            "/images/morningstar/A04A9917.jpg",
+            "/images/morningstar/A04A9922.jpg",
+            "/images/morningstar/A04A9959.jpg",
+            "/images/morningstar/A04A9960.jpg",
+            "/images/morningstar/A04A9995.jpg",
+        ],
     },
     {
         id: 2,
         date: "29",
         month: "December",
-        title: "Community Meal",
+        title: "Temple Christian",
         description: "Open table. Everyone welcome.",
         time: "18:00",
+        images: [
+            "/images/templechrist/5eye5y5y.jpg",
+            "/images/templechrist/vuiuibnin.jpg",
+            "/images/templechrist/wsxqwxqxsswaaaaa.jpg",
+            "/images/templechrist/yuviubub.jpg",
+        ],
     },
     {
         id: 3,
@@ -27,14 +41,22 @@ const events = [
         title: "Epiphany Service",
         description: "Celebrating the revelation.",
         time: "10:00",
+        images: [],
     },
     {
         id: 4,
         date: "12",
         month: "January",
-        title: "Silent Retreat",
+        title: "Faith Montessori",
         description: "A day of guided contemplation.",
         time: "09:00 - 16:00",
+        images: [
+            "/images/faithmonti/A04A0012.jpg",
+            "/images/faithmonti/A04A0056.jpg",
+            "/images/faithmonti/A04A9935.jpg",
+            "/images/faithmonti/A04A9958.jpg",
+            "/images/faithmonti/A04A9980.jpg",
+        ],
     },
 ];
 
@@ -93,6 +115,25 @@ export default function EventsTimeline() {
                                         <CalendarPlus size={20} />
                                     </button>
                                 </div>
+
+                                {/* Image Gallery */}
+                                {event.images && event.images.length > 0 && (
+                                    <div className="mt-8 flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+                                        {event.images.map((img, i) => (
+                                            <div
+                                                key={i}
+                                                className="relative h-48 w-72 flex-shrink-0 overflow-hidden rounded-sm"
+                                            >
+                                                <Image
+                                                    src={img}
+                                                    alt={`${event.title} image ${i + 1}`}
+                                                    fill
+                                                    className="object-cover transition-transform duration-700 hover:scale-110"
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </motion.div>
                     ))}
