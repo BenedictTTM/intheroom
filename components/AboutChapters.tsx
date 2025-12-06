@@ -32,9 +32,8 @@ export default function AboutChapters() {
                 scrollTrigger: {
                     trigger: galleryRef.current,
                     pin: true,
-                    scrub: 1,
-                    snap: 1 / (sections.length - 1),
-                    end: () => "+=" + (galleryRef.current?.offsetWidth || 0),
+                    scrub: 1.5,
+                    end: () => "+=" + ((galleryRef.current?.offsetWidth || 0) * 4),
                 },
             });
         }, containerRef);
