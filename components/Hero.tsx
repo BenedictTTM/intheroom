@@ -27,7 +27,7 @@ export default function Hero() {
             {/* Video/Image Background */}
             <div className="absolute inset-0 z-0">
                 {/* Mobile Image */}
-                <div className="absolute inset-0 md:hidden">
+                <div className="absolute inset-0">
                     <Image
                         src="/images/faithmonti/A04A0012.jpg"
                         alt="Hero Background"
@@ -45,7 +45,7 @@ export default function Hero() {
                     muted
                     loop
                     playsInline
-                    className="hidden h-full w-full object-cover md:block"
+                    className="absolute inset-0 hidden h-full w-full object-cover md:block"
                 >
                     {/* Placeholder video - replace with actual asset */}
                     <source
