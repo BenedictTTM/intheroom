@@ -25,9 +25,9 @@ export default function Navigation() {
                     <Image
                         src="/images/logo.png"
                         alt="Emmanuel Logo"
-                        width={120}
-                        height={32}
-                        className="h-8 w-auto object-contain"
+                        width={180}
+                        height={48}
+                        className="h-12 w-auto object-contain"
                         priority
                     />
                 </Link>
@@ -39,8 +39,8 @@ export default function Navigation() {
                             key={link.href}
                             href={link.href}
                             className={clsx(
-                                "text-sm font-light uppercase tracking-widest transition-colors hover:text-accent",
-                                pathname === link.href ? "text-accent" : "text-white/60"
+                                "text-sm font-bold uppercase tracking-widest transition-colors hover:text-accent",
+                                pathname === link.href ? "text-accent" : "text-white/80"
                             )}
                         >
                             {link.label}
@@ -51,10 +51,10 @@ export default function Navigation() {
                 {/* Mobile Menu Button */}
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="relative z-50 text-white md:hidden"
+                    className="relative z-50 text-white md:hidden p-2"
                     aria-label="Toggle menu"
                 >
-                    {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    {isOpen ? <X size={32} /> : <Menu size={32} />}
                 </button>
             </nav>
 

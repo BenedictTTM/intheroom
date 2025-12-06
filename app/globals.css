@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  /* Palette (dark sacred mode) */
-  --background: #41423A;
-  /* Deep Olive Grey */
-  --surface: #141414;
-  /* Rich Black */
-  --border: #141414;
-  /* Rich Black */
-  --primary: #F7F7F7;
-  /* Crisp White */
-  --secondary: #ECE2D2;
-  /* Soft Beige */
-  --accent: #E07D27;
+  /* Palette (Brighter Sacred Mode) */
+  --background: #FDFBF7;
+  /* Warm Cream */
+  --surface: #FFFFFF;
+  /* Pure White */
+  --border: #E5E5E5;
+  /* Light Grey */
+  --primary: #1A1A1A;
+  /* Dark Grey for Text */
+  --secondary: #8C8C8C;
+  /* Medium Grey */
+  --accent: #FF6B00;
   /* Vibrant Orange */
-  --accent-hover: rgba(224, 125, 39, 0.8);
+  --accent-hover: rgba(255, 107, 0, 0.8);
   /* Dimmed Orange */
 
   /* Fonts */

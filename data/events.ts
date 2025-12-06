@@ -1,0 +1,46 @@
+export const events = [
+    {
+        id: 1,
+        date: "24",
+        month: "December",
+        title: "Morning Star",
+        description: "A service of light and silence.",
+        time: "23:00",
+        images: [
+            "/images/morningstar/A04A9917.jpg",
+            "/images/morningstar/A04A9922.jpg",
+            "/images/morningstar/A04A9959.jpg",
+            "/images/morningstar/A04A9960.jpg",
+            "/images/morningstar/A04A9995.jpg",
+        ],
+    },
+    {
+        id: 2,
+        date: "29",
+        month: "December",
+        title: "Temple Christian",
+        description: "Open table. Everyone welcome.",
+        time: "18:00",
+        images: [
+            "/images/templechrist/5eye5y5y.jpg",
+            "/images/templechrist/vuiuibnin.jpg",
+            "/images/templechrist/wsxqwxqxsswaaaaa.jpg",
+            "/images/templechrist/yuviubub.jpg",
+        ],
+    },
+    {
+        id: 4,
+        date: "12",
+        month: "January",
+        title: "Faith Montessori",
+        description: "A day of guided contemplation.",
+        time: "09:00 - 16:00",
+        images: [
+            "/images/faithmonti/A04A0012.jpg",
+            "/images/faithmonti/A04A0056.jpg",
+            "/images/faithmonti/A04A9935.jpg",
+            "/images/faithmonti/A04A9958.jpg",
+            "/images/faithmonti/A04A9980.jpg",
+        ],
+    },
+];

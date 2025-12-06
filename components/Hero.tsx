@@ -24,6 +24,7 @@ export default function Hero() {
             className="relative h-[120vh] w-full overflow-hidden bg-background"
         >
             {/* Video/Image Background */}
+            {/* Video/Image Background */}
             <div className="absolute inset-0 z-0">
                 {/* Mobile Image */}
                 <div className="absolute inset-0 md:hidden">
@@ -31,9 +32,11 @@ export default function Hero() {
                         src="/images/faithmonti/A04A0012.jpg"
                         alt="Hero Background"
                         fill
-                        className="object-cover opacity-60 grayscale"
+                        className="object-cover"
                         priority
                     />
+                    {/* Dark Overlay for Mobile */}
+                    <div className="absolute inset-0 bg-black/40" />
                 </div>
 
                 {/* Desktop Video */}
@@ -42,7 +45,7 @@ export default function Hero() {
                     muted
                     loop
                     playsInline
-                    className="hidden h-full w-full object-cover opacity-60 grayscale md:block"
+                    className="hidden h-full w-full object-cover md:block"
                 >
                     {/* Placeholder video - replace with actual asset */}
                     <source
@@ -51,18 +54,19 @@ export default function Hero() {
                     />
                 </video>
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background" />
+                <div className="absolute inset-0 bg-black/30" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-background" />
             </div>
 
             {/* Content */}
             <motion.div
                 style={{ y, opacity }}
-                className="relative z-10 flex h-screen flex-col items-center justify-center text-center"
+                className="relative z-10 flex h-screen flex-col items-center justify-center text-center px-4"
             >
-                <h1 className="font-sans text-[12vw] font-extralight leading-none tracking-tighter text-primary mix-blend-overlay sm:text-[180px] lg:text-[240px]">
+                <h1 className="font-sans text-[15vw] font-bold leading-none tracking-tighter text-white sm:text-[200px] lg:text-[280px] drop-shadow-lg">
                     Emmanuel
                 </h1>
-                <p className="mt-8 font-sans text-lg font-light tracking-widest text-primary/80 sm:text-2xl">
+                <p className="mt-8 font-sans text-xl font-medium tracking-tight text-white/90 sm:text-3xl drop-shadow-md">
                     A church for the seeking and the found.
                 </p>
             </motion.div>
