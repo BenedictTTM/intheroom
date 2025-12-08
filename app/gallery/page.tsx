@@ -73,34 +73,22 @@ export default function GalleryPage() {
                 </header>
 
                 <section className="mb-24">
-                    <div className="flex items-center gap-4 mb-8">
-                        <h2 className="text-2xl font-light tracking-widest uppercase text-white/80">Temple Christ</h2>
-                        <div className="h-px flex-1 bg-white/10" />
-                    </div>
+
                     <GalleryGrid images={TEMPLE_CHRIST_IMAGES} />
                 </section>
 
                 <section className="mb-24">
-                    <div className="flex items-center gap-4 mb-8">
-                        <h2 className="text-2xl font-light tracking-widest uppercase text-white/80">Faith Monti</h2>
-                        <div className="h-px flex-1 bg-white/10" />
-                    </div>
+
                     <GalleryGrid images={FAITH_MONTI_IMAGES} />
                 </section>
 
                 <section className="mb-24">
-                    <div className="flex items-center gap-4 mb-8">
-                        <h2 className="text-2xl font-light tracking-widest uppercase text-white/80">Morning Star</h2>
-                        <div className="h-px flex-1 bg-white/10" />
-                    </div>
+
                     <GalleryGrid images={MORNING_STAR_IMAGES} />
                 </section>
 
                 <section>
-                    <div className="flex items-center gap-4 mb-8">
-                        <h2 className="text-2xl font-light tracking-widest uppercase text-white/80">Atmosphere & Life</h2>
-                        <div className="h-px flex-1 bg-white/10" />
-                    </div>
+
                     <GalleryGrid images={ATMOSPHERE_IMAGES} />
                 </section>
             </div>
