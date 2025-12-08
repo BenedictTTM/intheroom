@@ -103,7 +103,7 @@ export default function Hero() {
             >
                 <div className="overflow-hidden">
                     <motion.h1
-                        className="font-sans text-[18vw] font-bold leading-[0.85] tracking-tighter text-surface mix-blend-overlay sm:text-[200px] lg:text-[280px]"
+                        className="font-sans text-[18vw] font-bold leading-[0.85] tracking-tighter text-surface mix-blend-overlay sm:text-[200px] lg:text-[220px]"
                         initial="hidden"
                         animate="visible"
                     >
