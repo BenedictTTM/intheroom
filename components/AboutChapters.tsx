@@ -1,48 +1,14 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 
-gsap.registerPlugin(ScrollTrigger);
 
-const galleryImages = [
-    "/images/church-interior-1.jpg",
-    "/images/church-detail-1.jpg",
-    "/images/church-detail-2.jpg",
-    "/images/church-atmosphere-1.jpg",
-    "/images/church-atmosphere-2.jpg",
-    "/images/church-atmosphere-3.jpg",
-    "/images/church-atmosphere-4.jpg",
-];
 
 export default function AboutChapters() {
-    const galleryRef = useRef<HTMLDivElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            const sections = gsap.utils.toArray(".gallery-item");
-
-            gsap.to(sections, {
-                xPercent: -100 * (sections.length - 1),
-                ease: "none",
-                scrollTrigger: {
-                    trigger: galleryRef.current,
-                    pin: true,
-                    scrub: 1.5,
-                    end: () => "+=" + ((galleryRef.current?.offsetWidth || 0) * 4),
-                },
-            });
-        }, containerRef);
-
-        return () => ctx.revert();
-    }, []);
 
     return (
-        <div ref={containerRef} className="bg-background">
+        <div className="bg-background">
             {/* Chapter 01: We Believe */}
             <section className="flex min-h-screen flex-col justify-center px-4 py-16 md:px-24 md:py-24">
                 <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
@@ -73,38 +39,13 @@ export default function AboutChapters() {
                 </div>
             </section>
 
-            {/* Chapter 02: Our Space (Horizontal Scroll) */}
-            <section ref={galleryRef} className="relative flex h-screen w-full overflow-hidden bg-surface">
-                <div className="absolute top-12 left-12 z-10">
-                    <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
-                        Chapter 02 — Our Space
-                    </span>
-                </div>
-                <div className="flex h-full w-[700vw]"> {/* Width depends on number of images */}
-                    {galleryImages.map((src, i) => (
-                        <div key={i} className="gallery-item relative flex h-full w-screen items-center justify-center p-12">
-                            <div className="relative h-[80vh] w-full max-w-[90vw] overflow-hidden border border-border bg-background md:max-w-[60vw]">
-                                <Image
-                                    src={src}
-                                    alt={`Gallery image ${i + 1}`}
-                                    fill
-                                    className="object-cover transition-transform duration-1000 hover:scale-105"
-                                    sizes="(max-width: 768px) 100vw, 60vw"
-                                />
-                                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-8 opacity-0 transition-opacity duration-300 hover:opacity-100">
-                                    <p className="font-serif text-lg italic text-primary">Sanctuary detail {i + 1}</p>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
 
-            {/* Chapter 03: Our People */}
+
+            {/* Chapter 02: Our People */}
             <section className="min-h-screen px-4 py-16 md:px-24 md:py-24">
                 <div className="mb-24">
                     <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
-                        Chapter 03 — Our People
+                        Chapter 02 — Our People
                     </span>
                 </div>
                 <div className="grid grid-cols-1 gap-12 md:gap-24 md:grid-cols-2 lg:grid-cols-3">

@@ -50,7 +50,7 @@ export default function Hero() {
         window.scrollTo({ top: vh, behavior: "smooth" });
     };
 
-    const title = "Emmanuel";
+    const title = "In The Room";
     const letters = title.split("");
 
     return (

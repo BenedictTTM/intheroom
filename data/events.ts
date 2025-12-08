@@ -1,9 +1,9 @@
 export const events = [
     {
         id: 1,
-        date: "24",
-        month: "December",
-        title: "Morning Star",
+        date: "02",
+        month: "November",
+        title: "Morning Star School",
         description: "A service of light and silence.",
         time: "23:00",
         images: [
@@ -16,8 +16,8 @@ export const events = [
     },
     {
         id: 2,
-        date: "29",
-        month: "December",
+        date: "11",
+        month: "October",
         title: "Temple Christian",
         description: "Open table. Everyone welcome.",
         time: "18:00",
@@ -30,8 +30,8 @@ export const events = [
     },
     {
         id: 4,
-        date: "12",
-        month: "January",
+        date: "16",
+        month: "October",
         title: "Faith Montessori",
         description: "A day of guided contemplation.",
         time: "09:00 - 16:00",
