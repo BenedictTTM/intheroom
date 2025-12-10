@@ -50,9 +50,9 @@ export default function AboutChapters() {
                 </div>
                 <div className="grid grid-cols-1 gap-12 md:gap-24 md:grid-cols-2 lg:grid-cols-3">
                     {[
-                        { src: "/images/people-1.jpg", quote: "I came broken. I stay because here, silence is allowed." },
-                        { src: "/images/people-2.jpg", quote: "No performance. Just presence. This is where I breathe." },
-                        { src: "/images/people-3.jpg", quote: "Found by grace in the middle of my mess." },
+                        { src: "/images/people-1.jpg", quote: "I am who God says I am, I am what God says I am, I have what God says I have." },
+                        { src: "/images/people-2.jpg", quote: "I have the peace that surpasses all understanding." },
+                        { src: "/images/people-3.jpg", quote: "In your image was I made, for your pleasure, Lord I live." },
                     ].map((person, i) => (
                         <div key={i} className="group relative flex flex-col gap-8">
                             <div className="relative aspect-[3/4] w-full overflow-hidden bg-surface grayscale transition-all duration-500 group-hover:grayscale-0">

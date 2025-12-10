@@ -29,10 +29,10 @@ export const events = [
         description: "Open table. Everyone welcome.",
         time: "18:00",
         images: [
-            "/images/templechrist/5eye5y5y.jpg",
             "/images/templechrist/vuiuibnin.jpg",
             "/images/templechrist/wsxqwxqxsswaaaaa.jpg",
             "/images/templechrist/yuviubub.jpg",
+            "/images/templechrist/5eye5y5y.jpg",
             "/images/templechrist/IMG_20251204_190939_808.jpg",
             "/images/templechrist/IMG_20251204_190942_530.jpg",
             "/images/templechrist/IMG_20251204_190951_412.jpg",
@@ -42,8 +42,9 @@ export const events = [
             "/images/templechrist/IMG_20251204_191042_799.jpg",
             "/images/templechrist/IMG_20251204_191102_785.jpg",
             "/images/templechrist/djdfjdhj.jpg",
-            "/images/templechrist/egeebgdgb.jpg",
             "/images/templechrist/home.jpg",
+            "/images/templechrist/egeebgdgb.jpg",
+
         ],
     },
     {
