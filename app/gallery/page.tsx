@@ -39,11 +39,25 @@ const FAITH_MONTI_IMAGES = [
 ];
 
 const MORNING_STAR_IMAGES = [
+    '/images/morningstar/A04A0032.jpg',
+    '/images/morningstar/A04A0043.jpg',
+    '/images/morningstar/A04A0060-1.jpg',
+    '/images/morningstar/A04A9915.jpg',
     '/images/morningstar/A04A9917.jpg',
     '/images/morningstar/A04A9922.jpg',
+    '/images/morningstar/A04A9946.jpg',
+    '/images/morningstar/A04A9951.jpg',
     '/images/morningstar/A04A9959.jpg',
     '/images/morningstar/A04A9960.jpg',
+    '/images/morningstar/A04A9994.jpg',
     '/images/morningstar/A04A9995.jpg',
+    '/images/morningstar/Canon Canon EOS R-6720x4480-26441408.jpg',
+    '/images/morningstar/Canon Canon EOS R-6720x4480-26585152.jpg',
+    '/images/morningstar/Canon Canon EOS R-6720x4480-26651328.jpg',
+    '/images/morningstar/Canon Canon EOS R-6720x4480-26720000.jpg',
+    '/images/morningstar/Canon Canon EOS R-6720x4480-26793536.jpg',
+    '/images/morningstar/Canon Canon EOS R-6720x4480-31734592.jpg',
+    '/images/morningstar/Canon Canon EOS R-6720x4480-32050688.jpg',
 ];
 
 const ATMOSPHERE_IMAGES = [
