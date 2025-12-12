@@ -25,7 +25,7 @@ export default function Navigation() {
                 <Link href="/" className="block hover:opacity-80 transition-opacity relative z-50">
                     <Image
                         src="/images/logo.png"
-                        alt="Emmanuel Logo"
+                        alt="intheroom Logo"
                         width={180}
                         height={48}
                         className="h-12 w-auto object-contain"

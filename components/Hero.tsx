@@ -126,9 +126,6 @@ export default function Hero() {
                     transition={{ delay: 1.2, duration: 1 }}
                     className="mt-12 overflow-hidden"
                 >
-                    <p className="font-serif text-xl italic text-surface/90 sm:text-3xl md:text-4xl font-light tracking-wide">
-                        A church for the seeking and the found.
-                    </p>
                 </motion.div>
             </motion.div>
 

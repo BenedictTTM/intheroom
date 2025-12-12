@@ -19,7 +19,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Emmanuel Church",
+  title: "intheroom Church",
   description: "A church for the seeking and the found.",
 };
 
