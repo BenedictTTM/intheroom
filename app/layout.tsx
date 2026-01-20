@@ -19,8 +19,61 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "intheroom Church",
-  description: "A church for the seeking and the found.",
+  metadataBase: new URL("https://www.intheroom.site"),
+  title: {
+    default: "In The Room Church",
+    template: "%s | In The Room Church",
+  },
+  description: "A Global Community of Teenagers dedicated to spreading the Gospel of Jesus Christ.",
+  keywords: ["Church", "Teenagers", "Youth Ministry", "Gospel", "Jesus Christ", "In The Room", "Global Church"],
+  authors: [{ name: "In The Room Church" }],
+  creator: "In The Room Church",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.intheroom.site",
+    title: "In The Room Church",
+    description: "A Global Community of Teenagers dedicated to spreading the Gospel of Jesus Christ.",
+    siteName: "In The Room Church",
+    images: [
+      {
+        url: "/opengraph-image.png", // Ensure this image exists in public folder or update path
+        width: 1200,
+        height: 630,
+        alt: "In The Room Church",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "In The Room Church",
+    description: "A Global Community of Teenagers dedicated to spreading the Gospel of Jesus Christ.",
+    images: ["/twitter-image.png"], // Ensure this image exists
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "In The Room Church",
+  url: "https://www.intheroom.site",
+  logo: "https://www.intheroom.site/logo.png",
+  sameAs: [
+    "https://www.instagram.com/intheroom.global", // Update with actual social links
+    "https://www.youtube.com/@intheroom.global",
+  ],
+  description: "A Global Community of Teenagers dedicated to spreading the Gospel of Jesus Christ.",
 };
 
 export default function RootLayout({
@@ -39,6 +92,10 @@ export default function RootLayout({
             {children}
           </main>
         </SmoothScroll>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   );

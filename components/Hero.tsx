@@ -85,7 +85,7 @@ export default function Hero() {
                         className="h-full w-full object-cover opacity-90"
                     >
                         <source
-                            src="https://cdn.coverr.co/videos/coverr-sun-shining-through-church-windows-5626/1080p.mp4"
+                            src="https://res.cloudinary.com/dsriwu6yn/video/upload/v1768935568/IN_THE_ROOM_FINAL_1_l4twki.mp4"
                             type="video/mp4"
                         />
                     </video>
