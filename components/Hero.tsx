@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
 import Image from "next/image";
+import VideoBackground from "./VideoBackground";
 
 const LETTER_ANIMATION = {
     hidden: { y: 100, opacity: 0 },
@@ -20,7 +21,6 @@ const LETTER_ANIMATION = {
 export default function Hero() {
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollY } = useScroll();
-    const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
 
     // Parallax effects
@@ -74,31 +74,15 @@ export default function Hero() {
                         fill
                         className="object-cover opacity-80"
                         priority
+                        sizes="100vw"
                     />
                 </div>
 
-                {/* Desktop Video */}
-                <div className="hidden md:block absolute inset-0">
-                    <video
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload="auto"
-                        onPlaying={() => setIsVideoLoaded(true)}
-                        className={`h-full w-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? "opacity-90" : "opacity-0"}`}
-                    >
-                        <source
-                            src="https://res.cloudinary.com/dsriwu6yn/video/upload/f_auto,q_auto/v1768935568/IN_THE_ROOM_FINAL_1_l4twki.mp4"
-                            type="video/mp4"
-                        />
-                    </video>
-                    {!isVideoLoaded && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/10 backdrop-blur-[2px]">
-                            <div className="h-12 w-12 animate-spin rounded-full border-2 border-white/20 border-t-white" />
-                        </div>
-                    )}
-                </div>
+                {/* Desktop Video - Conditioned on mount to avoid hydration mismatch, but hidden on mobile via CSS effectively - optimized to strictly NOT render on mobile if possible, but for SSR safety we keep the structure simple or use a client-side only check if strictly needed. 
+                   However, the user wants "faster". The video tag with 'hidden md:block' still downloads bytes in many browsers. 
+                   Let's use a JS check to strictly prevent rendering the video tag on mobile to save bandwidth.
+                */}
+                <VideoBackground />
 
                 {/* Cinematic Overlays */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-background/90" />
