@@ -3,28 +3,17 @@
 import { useState, useEffect } from "react";
 
 export default function VideoBackground() {
-    const [shouldRenderVideo, setShouldRenderVideo] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
     useEffect(() => {
-        // Only load video on larger screens to save bandwidth on mobile
-        const checkScreenSize = () => {
-            if (window.innerWidth >= 768) { // md breakpoint
-                setShouldRenderVideo(true);
-            } else {
-                setShouldRenderVideo(false);
-            }
-        };
-
-        checkScreenSize();
-        window.addEventListener("resize", checkScreenSize);
-        return () => window.removeEventListener("resize", checkScreenSize);
+        setIsMounted(true);
     }, []);
 
-    if (!shouldRenderVideo) return null;
+    if (!isMounted) return null;
 
     return (
-        <div className="hidden md:block absolute inset-0">
+        <div className="absolute inset-0">
             <video
                 autoPlay
                 muted
