@@ -65,10 +65,10 @@ export default function AboutChapters() {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
                                 <div className="absolute bottom-8 left-8 right-8">
-                                    <p className="font-serif text-gray-200 text-3xl leading-tight text-primary">
+                                    <p className="font-serif text-white text-3xl leading-tight drop-shadow-md">
                                         {person.quote}
                                     </p>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     ))}
