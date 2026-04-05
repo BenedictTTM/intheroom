@@ -3,8 +3,37 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import { PrismaClient } from "@prisma/client";
+import { Metadata } from "next";
 
 const prisma = new PrismaClient();
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+    const { id } = await params;
+    const event = await prisma.event.findUnique({ where: { id } });
+
+    if (!event) {
+        return { title: "Event Not Found" };
+    }
+
+    const title = `${event.title} — ${event.month} ${event.day}`;
+    const description = event.description ?? `Join us for ${event.title} on ${event.month} ${event.day}. ${event.time}`;
+    const url = `https://www.intheroom.site/events/${id}`;
+
+    return {
+        title,
+        description,
+        alternates: { canonical: url },
+        openGraph: {
+            title: `${title} | In The Room Church`,
+            description,
+            url,
+        },
+    };
+}
 
 export default async function EventPage({
     params,

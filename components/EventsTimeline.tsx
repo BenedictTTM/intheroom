@@ -3,16 +3,15 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { CalendarPlus } from "lucide-react";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 
-type EventImage = {
+export type EventImage = {
   id: string;
   url: string;
   publicId: string;
 };
 
-type Event = {
+export type Event = {
   id: string;
   day: number;
   month: string;
@@ -23,15 +22,7 @@ type Event = {
   images: EventImage[];
 };
 
-export default function EventsTimeline() {
-    const [events, setEvents] = useState<Event[]>([]);
-
-    useEffect(() => {
-        fetch('/api/events')
-            .then(res => res.json())
-            .then(data => setEvents(Array.isArray(data) ? data : []))
-            .catch(err => console.error('Failed to fetch events:', err));
-    }, []);
+export default function EventsTimeline({ events }: { events: Event[] }) {
 
     return (
         <div className="min-h-screen bg-background px-4 py-24 md:px-24 md:py-32">

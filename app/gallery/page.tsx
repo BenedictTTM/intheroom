@@ -1,5 +1,19 @@
+import { Metadata } from 'next';
 import { GalleryGrid } from '@/components/GalleryGrid';
 import { PrismaClient } from '@prisma/client';
+
+export const metadata: Metadata = {
+    title: "Gallery",
+    description: "A visual journey through In The Room Church moments of worship, community, outreach, and gathering. Browse photos from Temple Christ, Faith Monti, Morning Star, and more.",
+    alternates: {
+        canonical: "https://www.intheroom.site/gallery",
+    },
+    openGraph: {
+        title: "Gallery | In The Room Church",
+        description: "A visual journey through moments of worship, community, and silence with In The Room Church.",
+        url: "https://www.intheroom.site/gallery",
+    },
+};
 
 const prisma = new PrismaClient();
 

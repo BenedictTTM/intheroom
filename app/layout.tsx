@@ -9,13 +9,15 @@ import CustomCursor from "@/components/CustomCursor";
 const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["200", "300", "400", "500", "600"], // Extralight to Semibold
+  weight: ["200", "300", "400", "500", "600"],
+  display: "swap",
 });
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-serif",
-  weight: ["300", "400", "500", "600", "700"], // Light to Bold
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -24,10 +26,18 @@ export const metadata: Metadata = {
     default: "In The Room Church",
     template: "%s | In The Room Church",
   },
-  description: "A Global Community of Teenagers dedicated to spreading the Gospel of Jesus Christ.",
-  keywords: ["Church", "Teenagers", "Youth Ministry", "Gospel", "Jesus Christ", "In The Room", "Global Church"],
+  description: "A Global Community of Teenagers dedicated to spreading the Gospel of Jesus Christ through faith, love, and discipleship.",
+  keywords: [
+    "Church", "Teenagers", "Youth Ministry", "Gospel", "Jesus Christ",
+    "In The Room", "Global Church", "Christian Youth", "Teen Church",
+    "Discipleship", "Outreach", "Worship",
+  ],
   authors: [{ name: "In The Room Church" }],
   creator: "In The Room Church",
+  publisher: "In The Room Church",
+  alternates: {
+    canonical: "https://www.intheroom.site",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -37,10 +47,10 @@ export const metadata: Metadata = {
     siteName: "In The Room Church",
     images: [
       {
-        url: "/opengraph-image.png", // Ensure this image exists in public folder or update path
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "In The Room Church",
+        alt: "In The Room Church — A Global Community of Teenagers",
       },
     ],
   },
@@ -48,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "In The Room Church",
     description: "A Global Community of Teenagers dedicated to spreading the Gospel of Jesus Christ.",
-    images: ["/twitter-image.png"], // Ensure this image exists
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -61,19 +71,8 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "In The Room Church",
-  url: "https://www.intheroom.site",
-  logo: "https://www.intheroom.site/logo.png",
-  sameAs: [
-    "https://www.instagram.com/intheroom.global", // Update with actual social links
-    "https://www.youtube.com/@intheroom.global",
-  ],
-  description: "A Global Community of Teenagers dedicated to spreading the Gospel of Jesus Christ.",
+  // Add your Google Search Console verification token here once you have it:
+  // verification: { google: "YOUR_VERIFICATION_TOKEN" },
 };
 
 export default function RootLayout({
@@ -92,10 +91,6 @@ export default function RootLayout({
             {children}
           </main>
         </SmoothScroll>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
       </body>
     </html>
   );
