@@ -1,4 +1,7 @@
 import { GalleryGrid } from '@/components/GalleryGrid';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
 
 const TEMPLE_CHRIST_IMAGES = [
     '/images/templechrist/5eye5y5y.jpg',
@@ -70,7 +73,17 @@ const ATMOSPHERE_IMAGES = [
     '/images/people-3.jpg',
 ];
 
-export default function GalleryPage() {
+export const dynamic = 'force-dynamic';
+
+export default async function GalleryPage() {
+    const dbImages = await prisma.image.findMany({
+        orderBy: {
+            createdAt: 'desc',
+        },
+    });
+
+    const dynamicImages = dbImages.map(img => img.url);
+
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-[#e5e5e5] pt-24 pb-20">
             <div className="container mx-auto px-4">
@@ -99,9 +112,22 @@ export default function GalleryPage() {
                 </section>
 
                 <section>
-
                     <GalleryGrid images={ATMOSPHERE_IMAGES} />
                 </section>
+
+                {dynamicImages.length > 0 && (
+                    <section className="mt-24">
+                        <header className="mb-12 text-center">
+                            <h2 className="text-3xl md:text-5xl font-light tracking-tight font-serif">
+                                Recent Events
+                            </h2>
+                            <p className="text-white/60 mt-4 max-w-2xl mx-auto font-light tracking-wide">
+                                Captured moments from our latest gatherings.
+                            </p>
+                        </header>
+                        <GalleryGrid images={dynamicImages} />
+                    </section>
+                )}
             </div>
         </main>
     );

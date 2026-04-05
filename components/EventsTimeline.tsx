@@ -3,11 +3,36 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { CalendarPlus } from "lucide-react";
-
-import { events } from "@/data/events";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
+type EventImage = {
+  id: string;
+  url: string;
+  publicId: string;
+};
+
+type Event = {
+  id: string;
+  day: number;
+  month: string;
+  title: string;
+  description: string;
+  time: string;
+  progress: number;
+  images: EventImage[];
+};
+
 export default function EventsTimeline() {
+    const [events, setEvents] = useState<Event[]>([]);
+
+    useEffect(() => {
+        fetch('/api/events')
+            .then(res => res.json())
+            .then(data => setEvents(Array.isArray(data) ? data : []))
+            .catch(err => console.error('Failed to fetch events:', err));
+    }, []);
+
     return (
         <div className="min-h-screen bg-background px-4 py-24 md:px-24 md:py-32">
             <div className="mx-auto max-w-3xl">
@@ -35,7 +60,7 @@ export default function EventsTimeline() {
                                         {/* Date */}
                                         <div className="flex flex-col">
                                             <span className="font-sans text-5xl font-extralight leading-none text-accent/80 transition-colors group-hover:text-accent md:text-8xl">
-                                                {event.date}
+                                                {event.day}
                                             </span>
                                             <span className="font-serif text-xl italic text-secondary">
                                                 {event.month}
@@ -77,7 +102,7 @@ export default function EventsTimeline() {
                                                     className="relative h-40 w-64 flex-shrink-0 overflow-hidden rounded-sm md:h-48 md:w-72"
                                                 >
                                                     <Image
-                                                        src={img}
+                                                        src={img.url}
                                                         alt={`${event.title} image ${i + 1}`}
                                                         fill
                                                         className="object-cover"
