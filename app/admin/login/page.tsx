@@ -48,7 +48,7 @@ export default function LogInPage() {
       <div className="flex w-full md:w-1/2 lg:w-2/5 items-center justify-center p-6 sm:p-8 md:p-10 lg:p-16 bg-white">
         <div className="w-full max-w-md">
           <div className="text-center md:text-left mb-8">
-            <h1 className="text-2xl md:text-3xl font-serif font-light tracking-tight mb-4">Log in to Your Account</h1>
+            <h1 className="text-2xl md:text-4xl font-serif font-light tracking-tight mb-4">Log in to Your Account</h1>
             <p className="text-base text-amber-700">Enter your details below</p>
           </div>
 
@@ -84,7 +84,7 @@ export default function LogInPage() {
 
             <button
               type="submit"
-              className="w-full bg-amber-700 text-white py-3 rounded-md font-medium hover:bg-amber-600 transition"
+              className="w-full bg-amber-700 text-white py-2 rounded-md font-medium hover:bg-amber-600 transition"
               disabled={loading}
             >
               {loading ? 'Logging in...' : 'Log In'}

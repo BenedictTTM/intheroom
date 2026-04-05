@@ -1,14 +1,10 @@
-import { events } from "@/data/events";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
+import { PrismaClient } from "@prisma/client";
 
-export function generateStaticParams() {
-    return events.map((event) => ({
-        id: event.id.toString(),
-    }));
-}
+const prisma = new PrismaClient();
 
 export default async function EventPage({
     params,
@@ -16,7 +12,11 @@ export default async function EventPage({
     params: Promise<{ id: string }>;
 }) {
     const { id } = await params;
-    const event = events.find((e) => e.id.toString() === id);
+    
+    const event = await prisma.event.findUnique({
+        where: { id },
+        include: { images: true }
+    });
 
     if (!event) {
         notFound();
@@ -37,7 +37,7 @@ export default async function EventPage({
                     <div className="flex flex-col gap-4">
                         <div className="flex flex-col">
                             <span className="font-sans text-6xl font-extralight leading-none text-accent md:text-9xl">
-                                {event.date}
+                                {event.day}
                             </span>
                             <span className="font-serif text-2xl italic text-secondary md:text-4xl">
                                 {event.month}
@@ -62,7 +62,7 @@ export default async function EventPage({
                             className="relative aspect-[4/3] w-full overflow-hidden rounded-sm"
                         >
                             <Image
-                                src={img}
+                                src={img.url}
                                 alt={`${event.title} photo ${index + 1}`}
                                 fill
                                 className="object-cover transition-transform duration-700 hover:scale-105"
