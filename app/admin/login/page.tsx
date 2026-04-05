@@ -12,6 +12,7 @@ export default function LogInPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -21,7 +22,6 @@ export default function LogInPage() {
 
     // simple frontend-only check
     setTimeout(() => {
-      setLoading(false);
       if (password === ADMIN_PASSWORD) {
         // mark as logged in (frontend only)
         try {
@@ -29,9 +29,14 @@ export default function LogInPage() {
         } catch (e) {
           // ignore
         }
-        // Redirect to admin root
-        router.push('/admin');
+        // show success state briefly before redirecting
+        setSuccess(true);
+        setLoading(false);
+        setTimeout(() => {
+          router.push('/admin');
+        }, 900);
       } else {
+        setLoading(false);
         setError('Invalid password.');
       }
     }, 600);
@@ -77,17 +82,38 @@ export default function LogInPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 className="w-full px-4 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-300"
+                disabled={loading || success}
               />
             </div>
 
             {error && <p className="text-sm text-red-600">{error}</p>}
 
+            <div aria-live="polite" aria-atomic="true" className="sr-only">
+              {loading ? 'Logging in' : success ? 'Login successful' : ''}
+            </div>
+
             <button
               type="submit"
-              className="w-full bg-amber-700 text-white py-2 rounded-md font-medium hover:bg-amber-600 transition"
-              disabled={loading}
+              className={`w-full py-2 rounded-md font-medium transition flex items-center justify-center gap-3 ${success ? 'bg-emerald-600 text-white' : 'bg-amber-700 text-white hover:bg-amber-600'}`}
+              disabled={loading || success}
             >
-              {loading ? 'Logging in...' : 'Log In'}
+              {loading && (
+                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+              )}
+
+              {success ? (
+                <>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 00-1.414-1.414L8 11.172 4.707 7.879a1 1 0 10-1.414 1.414l4 4a1 1 0 001.414 0l8-8z" clipRule="evenodd" />
+                  </svg>
+                  <span>Login successful</span>
+                </>
+              ) : (
+                <span>{loading ? 'Logging in...' : 'Log In'}</span>
+              )}
             </button>
 
             <div className="text-right">
