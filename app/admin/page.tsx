@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 type Image = {
   id: string;
@@ -51,6 +52,7 @@ const EventGallery = ({ images, title }: { images: Image[]; title: string }) => 
 };
 
 export default function AdminDashboard() {
+  const router = useRouter();
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(false);
   const [editingEvent, setEditingEvent] = useState<Event | null>(null);
@@ -61,8 +63,20 @@ export default function AdminDashboard() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Protect admin route on the client: require prior login via localStorage flag
+    try {
+      const isAdmin = typeof window !== 'undefined' ? localStorage.getItem('intheroom_admin') : null;
+      if (isAdmin !== 'true') {
+        router.push('/admin/login');
+        return;
+      }
+    } catch (e) {
+      router.push('/admin/login');
+      return;
+    }
+
     fetchEvents();
-  }, []);
+  }, [router]);
 
   const fetchEvents = async () => {
     const res = await fetch('/api/events');
@@ -160,9 +174,23 @@ export default function AdminDashboard() {
     setImagePreviews([]);
   };
 
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem('intheroom_admin');
+    } catch (e) {
+      // ignore
+    }
+    router.push('/admin/login');
+  };
+
   return (
     <main className="p-4 md:p-8 max-w-6xl mx-auto space-y-8 md:space-y-12">
-      <h1 className="text-3xl md:text-4xl font-bold">Event Admin Dashboard</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-3xl md:text-4xl font-bold">Event Admin Dashboard</h1>
+        <button onClick={handleLogout} className="ml-4 px-3 py-2 rounded-md bg-red-50 text-red-600 hover:bg-red-100">
+          Logout
+        </button>
+      </div>
 
       <section className="bg-white border p-4 md:p-6 rounded-2xl shadow-sm space-y-4 md:space-y-6 relative max-w-3xl">
         <button 

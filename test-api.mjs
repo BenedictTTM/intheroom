@@ -29,7 +29,7 @@ async function runTest() {
       method: 'POST',
       body: formData
     });
-    
+
     console.log('POST status:', postRes.status);
     const postData = await postRes.json();
     console.log('POST response:', postData);
